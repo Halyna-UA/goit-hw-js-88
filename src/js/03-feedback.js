@@ -1,10 +1,12 @@
 var throttle = require('lodash.throttle');
 
+const LOCALSTORAGE_KEY = 'feedback-form-state';
+
 const formEl = document.querySelector('.feedback-form');
 const inputEl = document.querySelector('.feedback-form input');
 const textareaEl = document.querySelector('.feedback-form textarea');
 
-const LOCALSTORAGE_KEY = 'feedback-form-state';
+
 
 //Creating an object for storing data in localstorage
 const formData = {
@@ -15,7 +17,7 @@ const formData = {
 
 //Add eventListener
 formEl.addEventListener('submit', onFormSubmit);
-formEl.addEventListener('input', trottle(onFormSubmit, 500));
+formEl.addEventListener('input', throttle(onFormInput, 500));
 
 //handlers
 function onFormSubmit(event) {
