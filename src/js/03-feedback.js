@@ -26,7 +26,7 @@ function onFormSubmit(event) {
 
 function onFormInput(event) {
     console.log(Boolean(formEl.elements.email.value));
-     if(formEl.elements.email.value && formEl.elements.message.value){
+     if(formEl.elements.email.value || formEl.elements.message.value){
         formData.email = formEl.elements.email.value;
         formData.message = formEl.elements.message.value;
      }
@@ -40,10 +40,9 @@ function formAfterReload(){
     if(localStorage.getItem(LOCALSTORAGE_KEY)){
     const saveFormData = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
     console.log(saveFormData);
-    if (saveFormData) {
-        inputEl.value = saveFormData.email;
-        textareaEl.value = saveFormData.message;
-    }
+    formEl.elements.email.value = saveFormData.email;
+    formEl.elements.message.value = saveFormData.message;
+  
 }
     
 }
